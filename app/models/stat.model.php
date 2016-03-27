@@ -13,6 +13,7 @@ class Stat {
 	public $value;
 	public $info;
 	public $comment;
+	public $exampleValue;
 
 	public function __construct($arr=null) {
 		if (isset($arr) && is_array($arr)) {
@@ -32,6 +33,7 @@ class Stat {
 		$this->value = (isset($arr['stat_value']) && strlen($arr['stat_value'])) ? $arr['stat_value'] : '';
 		$this->info = (isset($arr['stat_info']) && strlen($arr['stat_info'])) ? $arr['stat_info'] : '';
 		$this->comment = (isset($arr['stat_comment']) && strlen($arr['stat_comment'])) ? $arr['stat_comment'] : '';
+		$this->exampleValue = (isset($arr['example_value']) && strlen($arr['example_value'])) ? $arr['example_value'] : '';
 	}
 
 }

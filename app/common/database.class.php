@@ -16,7 +16,8 @@ class Database {
 	private $show_db_error = SHOW_DB_ERROR;
 
 	public function __construct() {
-		$dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
+		//$dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
+		$dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname . ';charset=utf8';
 
 		$options = array(
 				PDO::ATTR_PERSISTENT => FALSE,

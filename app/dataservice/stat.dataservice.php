@@ -457,6 +457,7 @@ EOF;
     $statName = isset($request->statName) ? $request->statName : '';
     $statDescription = isset($request->statDescription) ? $request->statDescription : '';
     $statType = isset($request->statType) ? $request->statType : '';
+    $statExampleValue = isset($request->statExampleValue) ? $request->statExampleValue : '';
 
     $query = <<<EOF
 			SELECT COUNT(*) AS stat_exists
@@ -479,8 +480,8 @@ EOF;
 		}
 
     $query = <<<EOF
-    	INSERT INTO stat (name, description, form_element_id)
-      VALUES (:statName, :statDescription, :statType)
+    	INSERT INTO stat (name, description, form_element_id, example_value)
+      VALUES (:statName, :statDescription, :statType, :statExampleValue)
 EOF;
     
     $params = array(
@@ -488,6 +489,7 @@ EOF;
         ':statName' => $statName,
         ':statDescription' => $statDescription,
         ':statType' => $statType,
+        ':statExampleValue' => $statExampleValue,
       )
     );
 
@@ -514,6 +516,7 @@ EOF;
     $statName = isset($request->statName) ? $request->statName : '';
     $statDescription = isset($request->statDescription) ? $request->statDescription : '';
     $statType = isset($request->statType) ? $request->statType : '';
+    $statExampleValue = isset($request->statExampleValue) ? $request->statExampleValue : '';
 
     $result = FALSE;
 
@@ -522,7 +525,8 @@ EOF;
 	    	UPDATE stat 
 	    	SET name = :statName, 
 	    			description = :statDescription, 
-	    			form_element_id = :statType
+	    			form_element_id = :statType,
+	    			example_value = :statExampleValue
 	    	WHERE id = :statId
 EOF;
 	    
@@ -532,6 +536,7 @@ EOF;
 	        ':statName' => $statName,
         	':statDescription' => $statDescription,
         	':statType' => $statType,
+        	':statExampleValue' => $statExampleValue,
 	      )
 	    );
 

@@ -2,6 +2,7 @@
 
 use Slim\Slim;
 require_once('app/config/app.config.inc');
+require_once('JSON.php');
 
 class Utilities {
 
@@ -50,9 +51,19 @@ class Utilities {
 		return TRUE;
 	}
 
+	public static function json_decode_nice($json, $assoc = FALSE){ 
+    $json = str_replace(array("\n","\r"),"",$json); 
+    $json = preg_replace('/([{,]+)(\s*)([^"]+?)\s*:/','$1"$3":',$json); 
+    return json_decode($json,$assoc); 
+	} 
+
 	public static function getRequestData() {
 		$request = Slim::getInstance()->request()->getBody();
-		$json_decoded_request = json_decode($request);
+
+		$jsonSrv = new Services_JSON();
+		$json_decoded_request = $jsonSrv->decode($request);
+
+		//$json_decoded_request = json_decode($request);
 		return $json_decoded_request;
 	}
 
